@@ -9,7 +9,6 @@ public class Movemento : MonoBehaviour
         
     }
     [SerializeField] private GameObject camera;
-    [SerializeField] private Vector3 offset = new Vector3(0, 5, -10);
 
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lateralSpeed = 15f;
@@ -18,15 +17,12 @@ public class Movemento : MonoBehaviour
     private float verticalInput;
     private float rotateInput;
     private float rt;
-    private float angle =0;
-    private Vector3 noffset = new Vector3(0, 0, 0);
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         rotateInput = Input.GetAxis("Rotate");
         rt = rotateInput * Time.deltaTime * 10;
-        Debug.Log(rt);
 
         if (verticalInput != 0)
         {
@@ -41,10 +37,7 @@ public class Movemento : MonoBehaviour
         }
        
         transform.Translate(new Vector3(0,0,1) * speed * Time.deltaTime * verticalInput);
-        angle += rt;
-        noffset = new Vector3(angle % 180 * 0.11111111111f, 5f, (angle % 180 * 0.1111111111111f) - 10);
-        camera.transform.Rotate(0, rt, 0);
-        camera.transform.position = transform.position + noffset;
+
 
     }
 }
